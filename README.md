@@ -26,9 +26,8 @@
 7. [Operation](#operation)
 8. [Simulation Results](#simulation-results)
 9. [Getting Started](#getting-started)
-10. [Repository Structure](#repository-structure)
-11. [Limitations and Future Work](#limitations-and-future-work)
-12. [Notes](#notes)
+10. [Limitations and Future Work](#limitations-and-future-work)
+11. [Notes](#notes)
 
 ---
 
@@ -64,7 +63,7 @@ The password is derived from the group number as the 8-bit two's complement of t
 ## System Architecture
 
 <p align="center">
-  <img src="images/architecture.svg" alt="System architecture block diagram" width="100%">
+  <img src="images/architecture.png" alt="System architecture block diagram" width="100%">
 </p>
 
 The design is split into four stages: inputs, comparison, control and memory, and outputs. This mirrors the Proteus schematic, so the signal path from the switches to the indicators is easy to trace.
@@ -72,7 +71,7 @@ The design is split into four stages: inputs, comparison, control and memory, an
 ## Flowchart
 
 <p align="center">
-  <img src="images/flowchart.svg" alt="System flowchart" width="560">
+  <img src="images/flowchart.png" alt="System flowchart" width="560">
 </p>
 
 ## Circuit Description
@@ -139,23 +138,7 @@ The design is split into four stages: inputs, comparison, control and memory, an
    - Enter any other value three times to reach count 3 and trigger the red LED.
 5. Press **RESET** to restore the system.
 
-## Repository Structure
 
-```
-.
-├── README.md
-├── proteus/
-│   └── lock-system.pdsprj
-├── images/
-│   ├── architecture.svg
-│   ├── flowchart.svg
-│   ├── attempt-1.png
-│   ├── attempt-2.png
-│   ├── attempt-3-lockout.png
-│   └── correct-password.png
-└── report/
-    └── report.pdf
-```
 
 ## Limitations and Future Work
 
