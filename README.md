@@ -11,7 +11,7 @@
 
 </div>
 
-> Originally a group term project for **EEE283: Digital Logic Design** at BRAC University. This repository contains the circuit design that I built. It is a simulation-only project; no hardware was built.
+> Originally a term project for **EEE283: Digital Logic Design** at BRAC University. This repository contains the circuit design that I built. It is a simulation-only project; no hardware was built.
 
 ---
 
