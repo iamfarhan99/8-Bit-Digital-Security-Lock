@@ -15,21 +15,6 @@
 
 ---
 
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Password Selection](#password-selection)
-4. [System Architecture](#system-architecture)
-5. [Flowchart](#flowchart)
-6. [Circuit Description](#circuit-description)
-7. [Operation](#operation)
-8. [Simulation Results](#simulation-results)
-9. [Getting Started](#getting-started)
-10. [Limitations and Future Work](#limitations-and-future-work)
-11. [Notes](#notes)
-
----
 
 ## Overview
 
@@ -127,18 +112,21 @@ The design is split into four stages: inputs, comparison, control and memory, an
 </table>
 
 ## Getting Started
-
-**Requirements:** Proteus 8 (ISIS).
+Requirements: Proteus 8 (ISIS).
 
 1. Clone or download this repository.
-2. Open `proteus/lock-system.pdsprj` in Proteus 8.
-3. Click **Run the simulation** (play button).
-4. Set the *Enter Password* switches and press **ENTER**.
+2. Download and extract the **[Proteus Simulation Files (.zip)](./proteus/proteus-simulation.zip)**.
+3. Open `lock-system.pdsprj` inside Proteus 8.
+4. Click **Run the simulation** (play button).
+5. Set the Enter Password switches and press ENTER.
    - Enter `11111011` to see the green LED turn on.
    - Enter any other value three times to reach count 3 and trigger the red LED.
-5. Press **RESET** to restore the system.
+6. Press RESET to restore the system.
 
+## Documentation
 
+- 📄 **Full Project Report:** Click to view the complete term project report **[View PDF](./report/lock-system-report.pdf)**.
+- ⚡ **Proteus Project Archive:** Download all schematic and simulation files **[Download ZIP](./proteus/proteus-simulation.zip)**.
 
 ## Limitations and Future Work
 
