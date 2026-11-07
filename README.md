@@ -2,25 +2,23 @@
 
 # 8-Bit Digital Security Lock System
 
-**A discrete-logic combination lock with attempt counting, automatic lockout and reset, designed and simulated in Proteus 8.**
+**A discrete-logic combination lock with attempt counting, automatic lockout and reset, designed and simulated in Proteus.**
 
-![Proteus](https://img.shields.io/badge/Simulated%20in-Proteus%208-blue)
+![Proteus](https://img.shields.io/badge/Simulated%20in-Proteus-blue)
 ![Type](https://img.shields.io/badge/Design-Pure%20Digital%20Logic-success)
-![Microcontroller](https://img.shields.io/badge/Microcontroller-None-lightgrey)
 ![Course](https://img.shields.io/badge/EEE283-Digital%20Logic%20Design-orange)
 
 </div>
 
-> Originally a term project for **EEE283: Digital Logic Design** at BRAC University. This repository contains the circuit design that I built. It is a simulation-only project; no hardware was built.
+> Originally a group term project for **EEE283: Digital Logic Design** at BRAC University. This repository contains the circuit design that I built. It is a simulation-only project; no hardware was built.
 
 ---
-
 
 ## Overview
 
 This project implements an 8-bit binary security lock using only standard digital ICs. There is no microcontroller and no software. The user sets an 8-bit code on a bank of switches and presses **ENTER**; the circuit compares it with a hard-wired password, then either unlocks, counts a failed attempt, or locks out after three failures. A dedicated **RESET** input returns the system to its initial state.
 
-The design shows how combinational logic (comparison), sequential logic (state memory and counting) and simple control gating combine to form a complete, observable security application.
+The design shows how combinational logic (comparison), sequential logic (state memory and counting) and simple control gating combine into a complete, observable security application.
 
 ## Features
 
@@ -35,7 +33,7 @@ The design shows how combinational logic (comparison), sequential logic (state m
 
 ## Password Selection
 
-The password is derived from the group number as the 8-bit two's complement of that number.
+The password is the 8-bit two's complement of the assigned group number.
 
 | Step | Value |
 |---|---|
@@ -56,7 +54,7 @@ The design is split into four stages: inputs, comparison, control and memory, an
 ## Flowchart
 
 <p align="center">
-  <img src="images/flowchart.png" alt="System flowchart" width="560">
+  <img src="images/flowchart.png" alt="System flowchart" width="520">
 </p>
 
 ## Circuit Description
@@ -64,13 +62,13 @@ The design is split into four stages: inputs, comparison, control and memory, an
 | Block | Component | Role |
 |---|---|---|
 | Comparison | 2 x **74LS85** (U1, U2) | Each chip compares one 4-bit half of the entered code with the preset password and outputs A=B |
-| Match logic | **AND** gate (U4) | `MATCH = EQ_upper AND EQ_lower`, which is HIGH only when all 8 bits are identical |
+| Match logic | **AND** gate (U4) | `MATCH = EQ_upper AND EQ_lower`, HIGH only when all 8 bits are identical |
 | State memory | **4013** D flip-flop (U3:A) | Samples `MATCH` on ENTER and holds the unlocked state, driving the green LED |
 | Attempt counter | **74161** 4-bit counter (U5) | Counts failed attempts in binary and feeds the display and lockout logic |
 | Lockout and control | AND / NOT gates, **74HC14** | Detects count `0011`, drives the red LED and blocks further ENTER processing |
 | Indicators | Green LED, red LED, 7-segment display | Unlock status, lockout alarm, attempt count |
 
-**Why this structure.** The comparator output is purely combinational and changes whenever the switches change, so it cannot serve as a lock state by itself. The flip-flop captures the result at the moment ENTER is pressed, and the counter keeps a history of failures. Splitting the 8-bit compare into two 4-bit stages also makes troubleshooting easy: a mismatch can be traced to either the upper or the lower half.
+**Why this structure.** The comparator output is purely combinational and changes whenever the switches change, so it cannot act as a lock state by itself. The flip-flop captures the result at the moment ENTER is pressed, and the counter keeps a history of failures. Splitting the 8-bit compare into two 4-bit stages also makes troubleshooting easy: a mismatch can be traced to the upper or the lower half.
 
 ## Operation
 
@@ -79,7 +77,7 @@ The design is split into four stages: inputs, comparison, control and memory, an
 3. **Correct code:** `MATCH` goes HIGH, the 4013 stores the unlocked state and the **green LED** turns on.
 4. **Wrong code:** `MATCH` stays LOW, the 74161 increments and the display shows **1**, then **2**.
 5. **Third wrong code:** the counter reaches `0011`, the **red LED** turns on and further ENTER presses are ignored.
-6. Press **RESET** at any time to clear the counter and stored state and start again.
+6. Press **RESET** to clear the counter and the stored state and start again.
 
 ## Simulation Results
 
@@ -112,25 +110,21 @@ The design is split into four stages: inputs, comparison, control and memory, an
 </table>
 
 ## Getting Started
-Requirements: Proteus 8 (ISIS).
+
+**Requirements:** Proteus (ISIS).
 
 1. Clone or download this repository.
-2. Download and extract the **[Proteus Simulation Files (.zip)](./proteus/proteus-simulation.zip)**.
-3. Open `lock-system.pdsprj` inside Proteus 8.
-4. Click **Run the simulation** (play button).
-5. Set the Enter Password switches and press ENTER.
+2. Open `proteus/lock-system.pdsprj` in Proteus.
+3. Click **Run the simulation** (play button).
+4. Set the *Enter Password* switches and press **ENTER**.
    - Enter `11111011` to see the green LED turn on.
    - Enter any other value three times to reach count 3 and trigger the red LED.
-6. Press RESET to restore the system.
-
-## Documentation
-
-- 📄 **Full Project Report:** Click to view the complete term project report **[View PDF](./report/lock-system-report.pdf)**.
-- ⚡ **Proteus Project Archive:** Download all schematic and simulation files **[Download ZIP](./proteus/proteus-simulation.zip)**.
+5. Press **RESET** to restore the system.
 
 ## Limitations and Future Work
 
 - The password is hard-wired, so changing it means changing the fixed logic levels in the schematic.
+- RESET is not protected, so anyone can clear a lockout. A real design would need a key switch or an authorised reset.
 - Mechanical switch bounce is not modelled; a hardware build would need debouncing on ENTER and RESET.
 - The lock has no timed re-enable, so only RESET clears a lockout.
 - Possible extensions: a user-programmable password using registers or memory, keypad entry, and a buzzer for the alarm.
@@ -139,3 +133,7 @@ Requirements: Proteus 8 (ISIS).
 
 - This is an educational simulation project and **not** a real security product.
 - Shared for portfolio and learning purposes. If you are a current student, please do not submit this work as your own.
+
+## License
+
+Released under the [MIT License](LICENSE).
